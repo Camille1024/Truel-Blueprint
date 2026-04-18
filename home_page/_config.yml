@@ -1,0 +1,10 @@
+title: Truel-Blueprint
+description: "Lean 4 formalization of the Truel problem (三人决斗博弈)"
+baseurl: ""
+url: "https://Camille1024.github.io/Truel-Blueprint"
+github_username: Camille1024
+repository: Camille1024/Truel-Blueprint
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+  - jekyll-github-metadata
