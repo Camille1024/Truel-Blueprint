@@ -379,3 +379,14 @@ scope = "PatrickMassot"
 5. **checkdecls 依赖不能忘** — docgen-action 最后会跑 `lake exe checkdecls`
 6. **leanblueprint 要求项目在 git 根目录** — monorepo 子目录需要临时 `git init`
 7. **`uses` 参数对 unfold+norm_num 证明是必须的** — LeanArchitect 无法自动推断这类依赖
+8. **home_page/ 目录必须有 Gemfile** — docgen-action 用 Jekyll 构建首页，需要 Gemfile 声明 `github-pages` gem 依赖
+
+## 附录：CI Bug 完整时间线
+
+| # | 错误 | 原因 | 修复 | CI 时间 |
+|---|------|------|------|---------|
+| 1 | `Could not find lakefile.toml` | docgen-action 只支持 .toml | 转换 lakefile.lean → lakefile.toml | 4min |
+| 2 | `File blueprint.sty not found` | PDF 编译需要占位包 | 创建 2 行 blueprint.sty | 4min |
+| 3 | `Undefined control sequence \lean` + CJK 缺字体 | print.tex 缺宏定义 + 中文字体 | macros/print.tex 加宏定义，去中文 | 5min |
+| 4 | `unknown executable checkdecls` | 缺 checkdecls 依赖 | lakefile.toml + manifest 加 checkdecls | 被取消 |
+| 5 | `Could not locate Gemfile` | Jekyll 构建主页需要 Gemfile | home_page/ 加 Gemfile | 2h5min |
